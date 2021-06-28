@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <span id="num"></span>
+        <button onclick="add(7)">add</button>
+    </div>
+
+<script>
+    const str = '498111557@qqcomcn'
+    const reg = /^[0-9a-zA-Z]+@[0-9a-z]+(\\.[0-9a-z]+)+$/
+
+    let x =0
+    const num = document.querySelector('#num')
+    function add(a){
+        num.innerHTML = a+x
+        x++
+    }
+
+    const debounce = function(fn,delay){
+        let timer = null
+        return function(){
+            clearTimeout(timer)
+            timer = setTimeout(()=>{
+                fn.apply(this,arguments)
+            },delay)
+        }
+    }
+
+    const throttle = function(fn,delay){
+        let canRun = true
+        return function(){
+            if(!canRun){
+                return
+            }
+            canRun = false
+            setTimeout(()=>{
+                fn.apply(this,arguments)
+                canRun = true
+            })
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function fib(num) {
+        let arr = new Array(num + 1).fill(null);
+        arr[0] = 0;
+        arr[1] = 1;
+        for (let i = 2; i <= num; i++) {
+            arr[i] = arr[i - 1] + arr[i - 2];
+        }
+        return arr[num];
+    }
+
+    alert(fib(10));
+</script>
+</body>
+</html>
