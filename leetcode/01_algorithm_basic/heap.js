@@ -49,15 +49,17 @@ const swap = function (arr, left, right) {
 
 
 const myHeap = new Heap()
-const arr = [6, 3, 2, 1, 4, 5]
+const arr = [1, 3, 5, 4, 8, 7, 6]
 
 for (let i = 0; i < arr.length; i++) {
     myHeap.push(arr[i])
 }
 
-// console.log(swap(arr, 1, 2))
-console.log(myHeap.heap)
-console.log(myHeap.pop())
-console.log(myHeap.pop())
-console.log(myHeap.pop())
-console.log(myHeap.heap)
+(function test() {
+    console.log(myHeap.heap)
+    console.log(myHeap.pop())
+    console.log(myHeap.pop())
+    console.log(myHeap.pop())
+    console.log(myHeap.heap)
+})()
+
