@@ -43,7 +43,7 @@ function mergeSort(arr, left, right) {
     if (left === right) {
         return arr
     }
-    let mid = left + (right - left) >> 2
+    let mid = left + (right - left) >> 1
     mergeSort(arr, left, mid)
     mergeSort(arr, mid + 1, right)
 
