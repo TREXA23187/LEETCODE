@@ -11,8 +11,8 @@ function MyPromise(fn) {
     this.value = null
 
     // 用于保存 then 中的回调，因为当执行完 Promise 时状态可能还是等待中，这时候应该把 then 中的回调保存起来用于状态改变时使用
-    that.resolvedCallbacks = []
-    that.rejectedCallbacks = []
+    this.resolvedCallbacks = []
+    this.rejectedCallbacks = []
 
 
     function resolve(value) {
@@ -61,3 +61,11 @@ MyPromise.prototype.then = function(onFulfilled,onRejected){
         onRejected(that.value)
     }
 }
+
+
+new MyPromise((resolve)=>{
+    resolve('ok')
+    console.log('---');
+}).then((data)=>{
+    console.log(data);
+})

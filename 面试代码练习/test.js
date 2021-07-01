@@ -3,31 +3,34 @@ const RESOLVED = 'resolved'
 const REJECTED = 'rejected'
 
 class myPromise{
-
     constructor(fn){
         this.value = null
         this.state = PENDING
+        this.fn = fn 
         this.resolvedCallbacks = []
         this.rejectedCallbacks = []
 
         try {
-            fn(this.resolve,this.reject)
+            this.fn(this.resolve.bind(this),this.reject.bind(this))
         } catch (error) {
             this.reject(error)
         }
     }
 
     resolve(value){
-        this.state = RESOLVED
-        this.value = value
-        this.resolvedCallbacks.map(cb=>cb(this.value))
-
+        if(this.state === PENDING){
+            this.state = RESOLVED
+            this.value = value
+            this.resolvedCallbacks.map(cb=>cb(this.value))
+        }
     }
 
     reject(value){
-        this.state = REJECTED
-        this.value = value
-        this.rejectedCallbacks.map(cb=>cb(this.value))
+        if(this.state === PENDING){
+            this.state = REJECTED
+            this.value = value
+            this.rejectedCallbacks.map(cb=>cb(this.value))
+        }
     }
 
 
@@ -42,23 +45,27 @@ myPromise.prototype.then = function(onResolved,onRejected){
         this.rejectedCallbacks.push(onRejected)
     }
     if(this.state === RESOLVED) {
-        onFulfilled(this.value)
+        onResolved(this.value)
     }
     if(this.state === REJECTED) {
         onRejected(this.value)
     }
     
-    this.rejectedCallbacks.map(cb=>cb())
 }
 
-const onResolved = function(data){
-    console.log('resolved');
-}
-const onRejected = function(){
-    console.log('rejected');
-}
-new myPromise((resolve,reject)=>{
-    resolve('ok')
-}).then((data)=>{
+const fn = (data)=>{
     console.log(data);
-})
+}
+
+new myPromise((resolve,reject)=>{
+    reject('error')
+    resolve('ok')
+    console.log('----');
+}).then(fn,fn)
+
+// new Promise((resolve)=>{
+//     resolve('ok')
+//     console.log('222');
+// }).then((data)=>{
+//     console.log(data);
+// })
