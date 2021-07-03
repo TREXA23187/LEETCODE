@@ -29,7 +29,7 @@ function unique3(arr) {
     return array;
 }
 
-function unique(arr) {
+function unique4(arr) {
     if (!Array.isArray(arr)) {
         console.log('type error!')
         return;
@@ -44,7 +44,7 @@ function unique(arr) {
     return arrry;
 }
 
-function unique(arr) {
+function unique5(arr) {
     if (!Array.isArray(arr)) {
         console.log('type error!')
         return

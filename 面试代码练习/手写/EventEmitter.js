@@ -53,6 +53,7 @@ class EventEmitter {
   eventBus.on('task', task2)
   
   setTimeout(() => {
+    eventBus.emit('task',once=true)
     eventBus.emit('task')
   }, 1000)
   
