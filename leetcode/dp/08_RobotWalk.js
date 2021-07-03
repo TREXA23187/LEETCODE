@@ -34,27 +34,39 @@ function walk(N, cur, rest, P) {
 function dpWay(N, M, K, P) {
     const dp = new Array(N + 1)
     for (let i = 0; i <= N; i++) {
-        dp[i] = new Array(K).fill(0)
+        dp[i] = new Array(K+1).fill(0)
     }
 
-    for (let i = 1; i <= N;i++) {
-        dp[i][0] = (i === P ? 1 : 0)
-    }
-    for (let i = 1; i < K; i++) {
-        dp[1][i] = dp[2][i - 1]
-    }
-    for (let i = 1; i < K; i++) {
-        dp[N][i] = dp[N - 1][i - 1]
+    // for (let i = 1; i <= N;i++) {
+    //     dp[i][0] = (i === P ? 1 : 0)
+    // }
+    for (let i = 1;i<=N;i++){
+        const dis = Math.abs(i-P)
+        dp[i][dis] = 1
     }
 
-    for(let i = 2;i<N;i++){
-        for(let j = 1;j<K;j++){
-            dp[i][j] = dp[i+1][j-1] + dp[i-1][j-1]
+
+
+    for(let i = 1;i<=K;i++){
+        for(let j = 2;j<=N-1;j++){
+            dp[j][i] = dp[j+1][i-1] + dp[j-1][i-1]
         }
     }
-    console.log(dp);
-    return dp[M][K-1]
+    for (let i = 1; i <= K; i++) {
+        dp[1][i] = dp[2][i - 1]
+    }
+    for (let i = 1; i <= K; i++) {
+        dp[N][i] = dp[N - 1][i - 1]
+    }
+    for(let i = 1;i<=K;i++){
+        for(let j = 2;j<=N-1;j++){
+            dp[j][i] = dp[j+1][i-1] + dp[j-1][i-1]
+        }
+    }
+
+    // console.log(dp);
+    return dp[M][K]
 }
 
-console.log(ways1(7, 2, 5, 3))
-console.log(dpWay(7, 2, 5, 3));
+console.log(ways1(8, 6, 7, 3))
+console.log(dpWay(8, 6, 7, 3));

@@ -58,6 +58,19 @@ class LinkList{
         }
         return false
     }
+
+    reverse(){
+        let pre = this.dummyhead
+        let cur = pre.next
+        let next = cur.next
+        pre.next = null
+        while(next.next){
+            cur.next = pre
+            pre = cur
+            cur = next
+            next = next.next
+        }
+    }
 }
 
 const arr = [0,1,2,3,4,5]
@@ -67,7 +80,6 @@ for(let i of arr){
 }
 
 // linklist.show()
-linklist.remove(3)
-linklist.remove(5)
+linklist.reverse()
 linklist.show()
 console.log(linklist.size)
