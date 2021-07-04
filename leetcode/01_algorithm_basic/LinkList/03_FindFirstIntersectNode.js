@@ -118,3 +118,5 @@ function bothLoop(head1, loop1, head2, loop2) {
         return null
     }
 }
+
+module.exports.getIntersectNode = getIntersectNode

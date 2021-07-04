@@ -51,3 +51,5 @@ function listPartition(head, pivot) {
     }
     return sH !== null ? sH : (eH !== null ? eH : bH)
 }
+
+module.exports.listPartition = listPartition
