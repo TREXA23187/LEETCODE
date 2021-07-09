@@ -30,7 +30,7 @@ function selection(arr) {
         for (let j = i + 1; j < arr.length; j++) {
             minIndex = arr[j] < arr[minIndex] ? j : minIndex
         }
-        swap(arr, i, minIndex)
+        swap(arr, minIndex, i)
     }
     return arr
 }
@@ -39,7 +39,6 @@ function merge(arr) {
     mergeSort(arr, 0, arr.length - 1)
     return arr
 }
-
 function mergeSort(arr, left, right) {
     if (left === right) {
         return arr
@@ -47,10 +46,9 @@ function mergeSort(arr, left, right) {
     let mid = left + ((right - left) >> 1)
     mergeSort(arr, left, mid)
     mergeSort(arr, mid + 1, right)
-
     const help = []
     let p1 = left, p2 = mid + 1, i = 0
-    while (p1 <= mid && p2 <= right) {
+    while (p1 <= mid && p2 < right) {
         help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++]
     }
     while (p1 <= mid) {
@@ -69,9 +67,10 @@ function quickSort(arr) {
     if (arr.length <= 1) {
         return arr
     }
-    let pivotIndex = arr.length >> 1
+    let pivotIndex = (arr.length >> 1)
     let pivot = arr.splice(pivotIndex, 1)[0]
-    let left = [], right = []
+    let left = []
+    let right = []
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] < pivot) {
             left.push(arr[i])
@@ -81,7 +80,6 @@ function quickSort(arr) {
     }
     return quickSort(left).concat([pivot], quickSort(right))
 }
-
 (function test() {
     const arr = [3, 2, 4, 1, 5, 7, 6, 8]
     console.log('bubble', bubble(arr));

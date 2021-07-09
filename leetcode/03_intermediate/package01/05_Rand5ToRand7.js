@@ -6,3 +6,5 @@
  * 给定一个函数f，以p概率返回0，以1-p概率返回1。请加工出等概率返回0和1函数g。
  */
 
+ process.stdout.write('111')
+ process.stdout.write('111')

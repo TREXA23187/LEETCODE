@@ -50,7 +50,6 @@ myPromise.prototype.then = function(onResolved,onRejected){
     if(this.state === REJECTED) {
         onRejected(this.value)
     }
-    
 }
 
 const fn = (data)=>{

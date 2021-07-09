@@ -22,11 +22,13 @@ function rotateEdge(m,a,b,c,d){
 function printMatrix(matrix){
     for(let i = 0;i!==matrix.length;i++){
         for(let j = 0;j!==matrix[0].length;j++){
-            console.log(matrix[i][j]+' ');
+            process.stdout.write(matrix[i][j]+' ');
         }
+        console.log('')
     }
 }
 
 const matrix = [[1,2,3,4],[6,7,8,9],[11,12,13,14],[1,2,3,4]]
+printMatrix(matrix)
 rotate(matrix)
 printMatrix(matrix)
